@@ -1,0 +1,23 @@
+---
+
+    const {question, answer} = Astro.props;
+
+---
+
+<div class="bg-white py-3 px-6 rounded-sm shadow-sm">
+
+    <p data-id="question-trigger" class="font-medium text-lg cursor-pointer flex justify-between">
+        {question}
+    
+        <img src="./assets/arrow-down.svg" alt="imagen de flecha" class="pointer-events-none"/>
+    </p>
+
+    <li class="question-hide grid transition-grid">
+        <div class="overflow-hidden ">
+            
+            <p class="pt-3 px-3 text-base font-light">{answer}</p>
+
+        </div>
+    </li>
+
+</div>

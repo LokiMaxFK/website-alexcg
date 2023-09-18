@@ -1,0 +1,70 @@
+---
+import FaqQuestion from "./FaqQuestion.astro";
+
+    
+const questions = [
+    {
+        question: '¿Tienes cursos de JavaScript?',
+        answer: 'Aún no, estará antes de que termine el 2023, pero mientras puedes buscar en YouTube "AlexCG DOM" es mi curso desde CERO para manipular el DOM.'
+    },
+
+    {
+        question: '¿Diferencia entre tus cursos Premium y cursos gratuitos?',
+        answer: 'Los cursos premium están estructurados para que aprendas la tecnología a profundidad, además de practicas para reforzar lo aprendido, una vez que tomes uno de esos cursos no necesitarás ningún otro curso para aprender la tecnología.'
+    },
+
+    {
+        question: '¿Diferencia entre tu curso de CSS y Flexbox y Grid?',
+        answer: 'Si quieres aprender Flexbox y CSS Grid unicamente te recomiendo el curso de Flexbox y Grid, pero si quieres aprender CSS desde las bases a lo más avanzado, te recomiendo el curso de CSS, si tienes el curso de CSS no es necesario que compres el de Flexbox y Grid, a menos que quieras hacer más de 10 proyectos con estas tecnologías.'
+    },
+
+    {
+        question: '¿Artistas favoritos?',
+        answer: 'Me gusta mucho The Killers y también Siddhartha, los pondría entre mis 2 favoritos.'
+    }
+]
+
+---
+
+<section class=" py-24 bg-[#EFF6FF]" id="faq">
+
+    <div class="wrapper max-w-screen-lg">
+        <h2 class="text-4xl">Preguntas Frecuentes</h2>
+
+        <ul data-id="question-container" class="mt-12 grid gap-8">
+
+
+           {questions.map(({question, answer}) =>(
+                <FaqQuestion question={question} answer={answer}/>
+           ))}
+
+        </ul>
+    </div>
+
+</section>
+
+<script>
+
+    const questionContainer = document.querySelector('[data-id="question-container"]');
+
+    questionContainer.addEventListener('click', handleShowQuestion);
+
+    function handleShowQuestion(e){
+        const currentClick = e.target;
+
+        if(currentClick.matches('[data-id="question-trigger"]')){
+            const nextElm = currentClick.nextElementSibling;
+            const imgCurrentElm = currentClick.querySelector('img');
+
+            if(nextElm.matches('.question-show')){
+                imgCurrentElm.src = "./assets/arrow-down.svg";
+            }else{
+                imgCurrentElm.src = "./assets/arrow-up.svg";
+            }
+
+            nextElm.classList.toggle('question-show');
+           
+        }
+    }
+
+</script>

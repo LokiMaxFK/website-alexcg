@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+
+    h1,h2,h3,h4,h5,h6{
+        @apply font-bold;
+    }
+
+}
+
+@layer components{
+    .wrapper{
+        @apply w-[90%] max-w-screen-xl mx-auto overflow-hidden;
+    }
+
+
+    .hide-menu{
+        @apply opacity-0 pointer-events-none;
+    }
+
+    .show-menu{
+        @apply opacity-100 pointer-events-auto;
+    }
+
+    .show-menu-desktop{
+        @apply opacity-100 pointer-events-auto static bg-white p-0;
+    }
+
+    .btn{
+        @apply bg-black text-white inline-block py-4 px-8 rounded-lg;   
+    }
+
+    .question-hide{
+        @apply grid-rows-[0fr];
+    }
+
+    .question-show{
+        @apply grid-rows-[1fr];
+    }
+
+    .transition-grid{
+        transition: grid-template-rows .3s;
+    }
+}
+
+@layer utilities{
+
+    .grid-courses{
+        @apply grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    }
+
+}

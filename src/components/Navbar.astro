@@ -1,0 +1,108 @@
+---
+
+import ItemNavbar from './ItemNavbar.astro';
+
+
+
+const linksElements = [
+    {
+        message: "Inicio",
+        href: "#"
+    },
+    {
+        message: "Cursos Premium",
+        href: "#premium"
+    },
+    {
+        message: "Hostinger",
+        href: "#hostinger"
+    },
+    {
+        message: "Cursos Gratis",
+        href: "#gifts"
+    },
+    {
+        message: "FAQ",
+        href: "#faq"
+    },
+    {
+        message: "Contacto",
+        href: "#contacto"
+    },
+    {
+        message: "Blog",
+        href: "https://alexcgdesign.com/blog/"
+    }
+]
+
+---
+
+
+<nav class="shadow-md fixed inset-x-0 top-0 z-10 bg-white ">
+   
+    <div class="flex justify-between items-center h-20 wrapper">
+
+        <a href="./">
+            <img src="./assets/logo.svg" alt="Logo AlexCG Design" class="w-28">
+        </a>
+    
+
+        <button class="bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] from-rose-100 to-teal-100 p-1 cursor-pointer relative z-10 lg:hidden" data-id="toggle-menu" >
+
+            <img src="./assets/open-menu.svg" class="w-8" data-open="disabled" alt="button-open-close-menu">
+
+
+        </button>
+
+        <div class="fixed bg-black/50 inset-0 hide-menu pt-24 transition-opacity lg:show-menu-desktop" data-id="menu">
+
+            <ul class="bg-white w-10/12 mx-auto py-8 px-4 rounded-xl grid gap-6 lg:mx-0 lg:p-0 lg:flex lg:w-auto">
+
+                {linksElements.map(({message, href}) => (
+                    <ItemNavbar message={message} href={href}/>
+                ))}
+                
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<script>
+
+    const toggleMenu = document.querySelector('[data-id="toggle-menu"]');
+    const menu = document.querySelector('[data-id="menu"]');
+    const statusMenu = {
+        open: "./assets/open-menu.svg",
+        close: "./assets/close-menu.svg"
+    }
+
+
+    toggleMenu.addEventListener('click', handleToggleMenu);
+    menu.addEventListener('click', handleMenuClick)
+
+    function handleToggleMenu() {
+        const image = toggleMenu.querySelector('img');
+        const dataStatus = image.getAttribute('data-open');
+
+        if(dataStatus === "disabled"){
+            image.src = statusMenu.close
+            image.setAttribute('data-open', 'enabled');
+            menu.classList.replace('hide-menu', 'show-menu');
+        }else{
+            image.src = statusMenu.open
+            image.setAttribute('data-open', 'disabled');
+            menu.classList.replace('show-menu', 'hide-menu');
+        }
+    }
+
+    function handleMenuClick(e){
+        if(e.target.matches('[data-id="link-section"]')){
+            handleToggleMenu();
+        }
+    }
+
+</script>

@@ -1,0 +1,79 @@
+---
+    import CourseItem from "./CourseItem.astro"
+
+    const {nameSection, courseToShow, copySection, identifier, bgColor="bg-white"} = Astro.props;
+
+    const courses = {
+        premium: [
+            {
+                imageCourse: "./assets/curso-desde-cero-a-fondo.png",
+                nameCourse: "CURSO CSS3 [Aprende y DOMINA CSS3 desde cero a avanzado].",
+                copyCourse: "Bienvenido al curso de CSS3 COMPLETO, en este curso aprenderás y dominarás CSS DESDE CERO hasta un NIVEL AVANZADO, empezaremos conociendo qué es CSS3 y creando nuestro primer archivo .css hasta crear cualquier diseño. Este curso está estructurado paso por paso para que conozcas y aprendas CSS3 desde cero.",
+                linkCourse: "https://alexcgdesign.com/cursocss/"
+            },
+            {
+                imageCourse: "./assets/tailwind-curso-desde-cero.png",
+                nameCourse: "Domina TailwindCSS - Desde cero a experto [proyectos reales]",
+                copyCourse: "Este es un curso a PROFUNDIDAD, para aprender Tailwind. Esta pensado para comenzar aprendiendo las primeras clases de utilidad básicas, hasta conocer las más avanzadas, al finalizar el curso serás capaz de crear cualquier proyecto con Tailwind. (SPOILER: Este sitio web está hecho con Tailwind)",
+                linkCourse: "https://alexcgdesign.com/tailwind/"
+            },
+            {
+                imageCourse: "./assets/flexbox-cssgrid-curso-completo.png",
+                nameCourse: "DOMINA FLEXBOX y CSS GRID A FONDO (+ 10 practicas)",
+                copyCourse: "Este es un curso dedicado a aprender Flexbox y CSS GRID a PROFUNDIDAD, aprendiendo desde como funciona Flexbox y Grid, hasta ser capaz de crear cualquie proyecto con este módulo de CSS, este curso es para personas que ya sepan CSS y solo quieran aprender Flexbox y Grid.",
+                linkCourse: "https://alexcgdesign.com/masterflex/"
+            }
+        ],
+        gifts: [
+            {
+                imageCourse: "./assets/sass-curso-desde-cero.png",
+                nameCourse: "Sass Moderno (Lleva CSS al siguiente nivel).",
+                copyCourse: "Domina CSS desde CERO, con uno de los mejores cursos de CSS.",
+                linkCourse: "https://www.udemy.com/course/sass-curso/"
+            },
+            {
+                imageCourse: "./assets/curso-html-desde-cero.png",
+                nameCourse: "HTML: Desde cero (Aprende y domina HTML5) + Infografias.",
+                copyCourse: "Aprende uno de los lenguajes más importantes de internet, desde cero sin ningún conocimiento previo hasta dominarlo.",
+                linkCourse: "https://www.udemy.com/course/curso-html5-completo/"
+            },
+            {
+                imageCourse: "./assets/curso-dibujar-con-css.png",
+                nameCourse: "Aprende a dibujar con CSS (descubre CSS de otra manera).",
+                copyCourse: "Usa tus conocimientos de CSS para crear dibujos y comprender de mejor manera a CSS.",
+                linkCourse: "https://www.udemy.com/course/dibujar-con-css/"
+            },
+        ]
+    }
+
+    const currentCourse = courses[identifier];
+---
+
+<section class=`py-24 ${bgColor}` id={identifier} > 
+    <div class="wrapper">
+
+        <h2 class="text-4xl md:text-5xl">{nameSection}</h2>
+        <p class="mt-4 font-light text-lg">{copySection} {
+            identifier==='gifts' ?
+            <a href="https://www.instagram.com/alexcg_design/" target="_blank" class="text-pink-500 underline ml-2">Contactame aquí</a>
+            : '' 
+        }</p>
+
+        
+
+        <div class="mt-16 grid gap-12 grid-courses">
+
+            {currentCourse.map(course => (
+                <CourseItem 
+                    imageCourse={course.imageCourse}
+                    nameCourse={course.nameCourse}
+                    copyCourse={course.copyCourse}
+                    linkCourse={course.linkCourse}
+
+                />
+            ))}
+        
+        </div>
+
+    </div>
+</section>
